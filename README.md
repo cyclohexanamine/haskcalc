@@ -5,3 +5,5 @@ calc2 implements a straightforward maths expression parser using the Parsec libr
 UParser implements a simple parser combinator library, like Parsec. The underlying implementation is different (and consequently very slow) - the interface is mostly the same, but parsers never eat tokens on failure.
 
 calc3 reimplements calc2 using UParser. Many of the operators were removed, because UParser gets extremely slow with more nesting, but it would finish (eventually) with the full operator list.
+
+irpnM implements a straightforward interactive RPN (Reverse Polish Notation, i.e., stack-based) calculator.
