@@ -1,4 +1,3 @@
-import Control.Monad
 import UParser2
 
 type NumType = Double
@@ -7,7 +6,7 @@ type ParseNum = UParse UInput NumType
 binOpers = [('+', (+)), ('-', (-)), ('*', (*)), ('/', (/)), ('^', (**))]
 
 
-main = forever $ putStrLn . formatResult . parseExp =<< getLine
+main = getLine >>= putStrLn . formatResult . parseExp >> main
 
 parseExp :: String -> Either UParseError NumType
 parseExp = parse (expression >>= \exp -> eof >> return exp)
@@ -42,7 +41,6 @@ float = do
     y <- optionMaybe $ string "." >> many (oneOf ['0'..'9'])
     return . read $ x ++ case y of Just st -> '.':st
                                    Nothing -> ""
-
 
 formatResult :: Either UParseError NumType -> String
 formatResult (Left  x) = "Error at " ++ show x ++ "\n"
