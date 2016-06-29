@@ -24,7 +24,7 @@ instance Applicative (UParse a) where
     (<*>) = ap
 
 instance Functor (UParse a) where
-    fmap f (UParse st) = UParse (fmap (fmap f) st)
+    fmap = liftM
 
 
 (<|>) :: UParse UInput a -> UParse UInput a -> UParse UInput a
